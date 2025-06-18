@@ -9,18 +9,23 @@ println("Matriz P:")
 println(P)
 
 #estagio inicial da Retinopatia Diabética
-a0 = [1.0, 0.0, 0.0, 0.0, 0.0]
+x0 = [1.0, 0.0, 0.0, 0.0, 0.0]
 
 #mudanas de estagio da doença
 mudancas = 5
 
 println("\nSimulação da Cadeia de Markov:")
-println("Estado inicial a₀ = ", a0)
+println("Estado inicial a₀ = ", x0)
+print("\n")
 
-estado = a0
+estado = x0
 
 #calculo da probabilidade de cada mudança
 for i in 1:mudancas
     global estado = P' * estado
     println("a[$i] = ", round.(estado, digits=4))
 end
+
+# Probabilidade de cegueira no estado 5
+prob_cegueira = estado[5]
+println("\nApós $mudancas passos, aproximadamente ", round(prob_cegueira * 100, digits=2), "% da população está no estado de cegueira.")
